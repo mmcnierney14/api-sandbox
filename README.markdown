@@ -22,3 +22,9 @@ Inspiration
 -----------
 
 The API Sandbox plugin was inspired by [Wordnik's excellent API explorer](http://developer.wordnik.com/docs). To easily create an API for your Ruby on Rails web app, use [Grape](https://github.com/intridea/grape) -- this plugin was tested on an API using Grape.
+
+TODO
+----
+
+* Fix bug that improperly splices user-entered param values when one param contains the text of another param (e.g. `results_per_page` and `page`).
+* Add support for the entry of multiple values for array params (e.g. `?names[]=`).
