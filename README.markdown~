@@ -12,12 +12,6 @@ API Sandbox requires jQuery. The plugin takes two arguments, one for an HTTP met
 
 This would place an API sandbox with one field for user_id in a div element with an id of user on the page.
 
-API Sandbox recognizes URL parameters in three forms: `:symbols`, `?first_param=`, and `&subsequent_params=`. Here's an example with multiple types of params in one URL string:
-
-    $("#user").apiSandbox("get","/api/v1/:model/search?term=&results_per_page=")
-
-This would result in a form with three fields, one for `:model`, one for `term`, and one for `results_per_page`.
-
 Inspiration
 -----------
 
