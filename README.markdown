@@ -1,7 +1,7 @@
 API Sandbox jQuery Plugin
 =========================
 
-API Sandbox is a jQuery plugin written in CoffeeScript that allows web apps to easily implement sandbox environments for an API explorer. The design of the sandbox is configurable by editing the api_sandbox.sass file included in this repository.
+API Sandbox is a jQuery plugin written in CoffeeScript that allows web apps to easily implement sandbox environments for an API explorer. The design of the sandbox is configurable by editing the sandbox_styles.sass file included in this repository.
 
 Dependencies
 ------------
