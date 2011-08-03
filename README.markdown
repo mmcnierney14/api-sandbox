@@ -14,17 +14,22 @@ This would place an API sandbox with one field for user_id in a div element with
 
 API Sandbox recognizes URL parameters in three forms: `:symbols`, `?first_param=`, and `&subsequent_params=`. Here's an example with multiple types of params in one URL string:
 
-    $("#user").apiSandbox("get","/api/v1/:model/search?term=&results_per_page=")
+    $("#user").apiSandbox("get","/api/v1/:model/search?term=&results_per_page=&page=")
 
-This would result in a form with three fields, one for `:model`, one for `term`, and one for `results_per_page`.
+This would result in a form with four fields, one for `model`, one for `term`, one for `results_per_page`, and one for `page`.
+
+Important note: if the API path ends with a symbol, it must end with a trailing forward slash (/) to properly parse the path. For example:
+
+    $("#user").apiSandbox("post","/api/v1/:user/:action/")
+
+If the path had been written as `/api/v1/:user/:action`, API Sandbox would not have recognized the second field.
 
 Inspiration
 -----------
 
-The API Sandbox plugin was inspired by [Wordnik's excellent API explorer](http://developer.wordnik.com/docs). To easily create an API for your Ruby on Rails web app, use [Grape](https://github.com/intridea/grape) -- this plugin was tested on an API using Grape.
+The API Sandbox plugin was inspired by [Wordnik's excellent API explorer](http://developer.wordnik.com/docs). To easily create an API for your Ruby on Rails web app, use [Grape](https://github.com/intridea/grape). This plugin was tested on an API using Grape.
 
 TODO
 ----
 
-* Fix bug that improperly splices user-entered param values when one param contains the text of another param (e.g. `results_per_page` and `page`).
 * Add support for the entry of multiple values for array params (e.g. `?names[]=`).
