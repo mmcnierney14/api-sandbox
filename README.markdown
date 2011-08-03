@@ -3,10 +3,23 @@ API Sandbox jQuery Plugin
 
 API Sandbox is a jQuery plugin written in CoffeeScript that allows web apps to easily implement sandbox environments for an API explorer. The design of the sandbox is configurable by editing the api_sandbox.sass file included in this repository.
 
+Dependencies
+------------
+
+API Sandbox has a couple of dependencies:
+
+ * [jQuery](http://jquery.com/)
+ * [jQuery BBQ](http://benalman.com/projects/jquery-bbq-plugin/)
+ * [Underscore.js](http://documentcloud.github.com/underscore/)
+ * [CoffeeScript](http://jashkenas.github.com/coffee-script/)
+ * [SASS](http://sass-lang.com/)
+
+If there is interest, I can work on a version of API Sandbox without these dependencies.
+
 Usage
 -----
 
-API Sandbox requires jQuery. The plugin takes two arguments, one for an HTTP method, and another for the API path. The plugin parses the URL and creates editable fields on the page for each URL parameter so the API path can be tested. For example:
+The plugin takes two arguments, one for an HTTP method, and another for the API path. The plugin parses the URL and creates editable fields on the page for each URL parameter so the API path can be tested. For example:
 
     $("#user").apiSandbox("get","/api/v1/users?user_id=")
 
