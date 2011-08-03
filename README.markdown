@@ -19,7 +19,7 @@ If there is interest, I can work on a version of API Sandbox without these depen
 Usage
 -----
 
-The plugin takes two arguments, one for an HTTP method, and another for the API path. The plugin parses the URL and creates editable fields on the page for each URL parameter so the API path can be tested. For example:
+The plugin takes two arguments, one for an HTTP method, and another for the API path. The plugin parses the URL and creates editable fields on the page for each URL parameter so the API path can be tested. Note that if the page has multiple sandboxes, each sandbox must be in its own unique div element.  For example:
 
     $("#user").apiSandbox("get","/api/v1/users?user_id=")
 
