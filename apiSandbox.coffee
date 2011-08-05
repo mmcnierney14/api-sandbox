@@ -35,32 +35,31 @@
     # Add form to location's html
     this.html(form)
     
+    context = this
     # Slide down the fields when the path is clicked and make the output
     # disappear if necessary
     this.find("#path_info").click ->
-      this.find("#fields").slideToggle('fast')
-      this.find("#sandbox_response").fadeOut('fast') if this.find("#sandbox_response").css("display") == "block"
-    
+      context.find("#fields").slideToggle('fast')
+      context.find("#sandbox_response").fadeOut('fast') if context.find("#sandbox_response").css("display") == "block"
+
     # When the try button is clicked
     this.find("button").click ->
       call_path = path
-      
+
       # Interpolate symbols into path
-      for symbol,value of this.find("#symbols").serializeToJSON()
+      for symbol,value of context.find("#symbols").serializeToJSON()
         call_path = call_path.replace(new RegExp(":"+symbol+"(?=[\/?])","i"),value)
-      
+
       # Interpolate query values into path
-      call_path = $.param.querystring( call_path, this.find("#params").serializeToJSON())
+      call_path = $.param.querystring( call_path, context.find("#params").serializeToJSON())
 
       # Get the API response
       $.ajax 
         url: call_path,
         type: method,
         error: (jqXHR, textStatus, errorThrown) =>
-          this.find("#sandbox_response").html "AJAX Error: #{textStatus}\n\nResponse:\n"+JSON.stringify(jqXHR,null,"\t")
+          context.find("#sandbox_response").html "AJAX Error: #{textStatus}\n\nResponse:\n"+JSON.stringify(jqXHR,null,"\t")
         success: (data, textStatus, jqXHR) =>
-          this.find("#sandbox_response").html JSON.stringify(data,null,"\t")
-      this.find("#sandbox_response").fadeIn('fast') 
-
-
-)(jQuery)
+          context.find("#sandbox_response").html JSON.stringify(data,null,"\t")
+      context.find("#sandbox_response").fadeIn('fast')
+) (jQuery)
