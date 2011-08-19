@@ -1,13 +1,16 @@
 (($) ->
-  
-  $.fn.apiSandbox = (method,path) ->
+  $.fn.sandbox_for = (method,path) ->
     # Get symbol params and their respective indexes in the path
     symbols = if match = path.match(new RegExp(/:.+?(?=\/)/g)) then match else []
-    
+  
     # Get an array of params with jQuery bbq
     params = if path.indexOf("?") > -1 then $.deparam.querystring(path) else []
-          
-    # Get readable field names
+        
+    # Get readable field names 
+    for name,value of params
+      if _.isArray(value)
+        params[name + "[]"] = params[name]
+        delete params[name]
     param_names = _.keys params
     symbol_names = for symbol in symbols
       symbol.replace(":","")
@@ -34,7 +37,7 @@
     
     # Add form to location's html
     this.html(form)
-    
+
     context = this
     # Slide down the fields when the path is clicked and make the output
     # disappear if necessary
@@ -42,8 +45,7 @@
       context.find("#fields").slideToggle('fast')
       context.find("#sandbox_response").fadeOut('fast') if context.find("#sandbox_response").css("display") == "block"
 
-    # When the try button is clicked
-    this.find("button").click ->
+    getResponse = ->
       call_path = path
 
       # Interpolate symbols into path
@@ -51,7 +53,7 @@
         call_path = call_path.replace(new RegExp(":"+symbol+"(?=[\/?])","i"),value)
 
       # Interpolate query values into path
-      call_path = $.param.querystring( call_path, context.find("#params").serializeToJSON())
+      call_path = $.param.querystring( call_path.split("?")[0], context.find("#params").serializeToJSON())
 
       # Get the API response
       $.ajax 
@@ -62,4 +64,17 @@
         success: (data, textStatus, jqXHR) =>
           context.find("#sandbox_response").html JSON.stringify(data,null,"\t")
       context.find("#sandbox_response").fadeIn('fast')
+
+    # When the try button is clicked
+    this.find("button").click ->
+      getResponse()
+
+    # When either of the form is submitted (by the user hitting enter)
+    this.find("#params").submit ->
+      getResponse()
+      return false
+    this.find("#symbols").submit ->
+      getResponse()
+      return false
+
 ) (jQuery)
