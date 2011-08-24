@@ -77,3 +77,4 @@ TODO
 
 * Add support for the entry of multiple values for array params (e.g. `?names[]=`).
 * Add more configuration options to APIExplorer
+* At the moment, you need a `images/search/large_loader.gif` to see a loading animation during the AJAX request on the API Explorer. I want to implement [spin.js](http://fgnass.github.com/spin.js/) instead.
