@@ -1,23 +1,50 @@
 API Sandbox jQuery Plugin
 =========================
 
-API Sandbox is a jQuery plugin written in CoffeeScript that allows web apps to easily implement sandbox environments for an API explorer. The design of the sandbox is configurable by editing the sandbox_styles.sass file included in this repository.
+API Sandbox is a jQuery plugin written in CoffeeScript that allows web apps to easily implement sandbox environments for an API explorer. The plugin includes two parts: apiSandbox, which aids in the creation of inline sandboxes for individual API paths, and APIExplorer, which is a full API explorer solution, much like [Facebook's](https://developers.facebook.com/tools/explorer/).
 
 Dependencies
 ------------
 
-API Sandbox has a couple of dependencies:
+apiSandbox's dependencies:
 
  * [jQuery](http://jquery.com/)
  * [jQuery BBQ](http://benalman.com/projects/jquery-bbq-plugin/)
  * [Underscore.js](http://documentcloud.github.com/underscore/)
  * [CoffeeScript](http://jashkenas.github.com/coffee-script/)
  * [SASS](http://sass-lang.com/)
+ 
+APIExplorer's dependencies:
+ * [Grape](https://github.com/dblock/grape/tree/api-params) on [dblock](https://github.com/dblock)'s fork (at api-params) is the only supported API
+ * [jQuery](http://jquery.com/)
+ * [jQuery UI](http://jqueryui.com/download) (just the autocomplete plugin)
+ * [Underscore.js](http://documentcloud.github.com/underscore/)
+ * [prettyPrint.js](https://github.com/jamespadolsey/prettyPrint.js)
+ * [CoffeeScript](http://jashkenas.github.com/coffee-script/)
+ * [SASS](http://sass-lang.com/)
 
-If there is interest, I can work on a version of API Sandbox without these dependencies.
+I'd be happy to accept pull requests for versions of API Sandbox without these dependencies.
 
 Usage
 -----
+
+###API Explorer
+
+The plugin takes one argument, which is a relative URL to a server path that returns a hash describing the API for a web app. API Explorer accepts a hash with two keys, one with a string for the current version of the API, e.g. `"v1"`, and one with an array of Grape `route` objects.
+
+For example, a Rails controller could be configured as follows:
+
+    # GET /api/:version/describe_api
+    def describe_api
+      api_hash = {}
+      api_hash['version'] = params[:version]
+      api_hash['routes'] = Api::routes
+      render json: api_hash
+    end
+    
+API Explorer adds functionality to a template, which has been provided. As long as the skeleton of the template remains with the proper `div` elements still intact, you can modify this template and the accompanying CSS as much as you like.
+
+###API Sandbox
 
 The plugin takes two arguments, one for an HTTP method, and another for the API path. The plugin parses the URL and creates editable fields on the page for each URL parameter so the API path can be tested. Note that if the page has multiple sandboxes, each sandbox must be in its own unique div element.  For example:
 
