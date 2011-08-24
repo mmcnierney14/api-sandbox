@@ -15,6 +15,7 @@ apiSandbox's dependencies:
  * [SASS](http://sass-lang.com/)
  
 APIExplorer's dependencies:
+
  * [Grape](https://github.com/dblock/grape/tree/api-params) on [dblock](https://github.com/dblock)'s fork (at api-params) is the only supported API
  * [jQuery](http://jquery.com/)
  * [jQuery UI](http://jqueryui.com/download) (just the autocomplete plugin)
