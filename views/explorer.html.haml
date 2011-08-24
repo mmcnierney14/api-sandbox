@@ -1,0 +1,23 @@
+%script
+  new App.Views.APIExplorer({ el: $('#main_content') });
+
+#explorer
+  %h1= "Art.sy API #{@version} Explorer"
+
+  %h2
+    Art.sy Console
+  #explorer_input
+    .method
+      %ul.dropdown
+    .prefix= " http://art.sy/api/#{@version}/"
+    %input#path_input.path_input
+    %button.try_button#try_button View
+
+  #explorer_output
+    %nav#explorer_nav
+      %ul
+        %li.tab.formatted_tab= link_to "Formatted JSON", "#"
+        %li.tab.table_tab= link_to "Table Format", "#"
+        %li.tab.raw_tab= link_to "Raw JSON", "#"
+    
+    #response

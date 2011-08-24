@@ -1,0 +1,242 @@
+// Styles for the API explorer
+#explorer
+  display: block
+  width: 900px
+  margin-left: auto
+  margin-right: auto
+  h1
+    margin-bottom: 30px
+
+  // Styles for the explorer input
+  #explorer_input
+    display: block
+    +clearfix
+    & div, & input
+      float: left
+      display: block
+    input.path_input
+      width: 634px
+      height: 18px
+      background-color: transparent
+      border: 1px solid black
+      border-left: none
+      font-family: "Franklin Gothic Book",Helvetica,Arial,Sans-Serif
+      font-size: 14px
+      padding: 3px
+      padding-top: 2px
+      padding-bottom: 4px
+      outline: none
+      padding-left: 0px
+      margin-left: 0px
+      margin-right: 2px   
+    .prefix
+      border: 1px solid black
+      border-right: none
+      border-left: none
+      padding-left: 4px
+      padding-bottom: 1px
+      margin-right: -1px
+      font-size: 14px
+      line-height: 23px
+      font-family: "Franklin Gothic Book",Helvetica,Arial,Sans-Serif
+      color: #999
+    .method ul
+      padding: 0px
+      margin: 0px
+      > li
+        text-align: center
+        line-height: 26px
+        background-color: black
+        color: #FFFFFF
+        font-weight: 300
+        font-family: "Franklin Gothic Demi Condensed",Helvetica,Arial,Sans-Serif
+        font-size: 13px
+        text-decoration: none
+        text-transform: uppercase
+        width: 50px
+        display: inline-block
+        padding: 0px
+        margin: 0px
+        &:hover
+          background-color: #4c4c4c
+        p
+          color: #FFFFFF
+          text-decoration: none
+          padding: 0px
+          margin: 0px
+          display: inline-block
+          cursor: default
+      > li.expandable
+        list-style-type: none
+        cursor: pointer
+        p
+          cursor: pointer
+        &:after
+          content: '  +'
+        &:hover
+          ul
+            display: block
+            li
+              display: block
+        ul
+          display: none
+          z-index: 1000
+          position: absolute
+          li
+            &:hover
+              background-color: #4c4c4c
+            p
+              color: #FFFFFF
+
+  #explorer_output
+    display: none
+    & div
+      height: 500px
+
+    #response
+      display: block
+      border: 1px solid #ddd
+      padding: 20px
+      &.no-padding
+        padding: 0px
+        table
+          margin: 0px
+      &.loading
+        background-image: url(images/search/large_loader.gif)
+        background-color: white
+        background-position: center center
+        background-repeat: no-repeat
+      &.loaded
+        background-color: #eee
+        font-family: 'Courier New','Terminal',monospace
+        font-size: 12px
+        white-space: pre-wrap
+        white-space: -moz-pre-wrap !important
+        white-space: -pre-wrap
+        white-space: -o-pre-wrap
+        word-wrap: break-word
+        overflow: auto
+        
+    // Styles for the explorer tabs
+    #explorer_nav ul
+      margin-bottom: 0px
+      margin-left: 0px
+      margin-top: 2.5em
+      font-family: helvetica neue, Helvetica, Arial, Sans-Serif
+      font-weight: 200
+      font-size: 85%
+      > li
+        border: 1px solid #ddd
+        padding: 5px
+        background-color: white
+        color: #4c4c4c
+        display: inline-block
+        position: relative
+        top: 1px
+        &.current_tab_item, &:hover
+          background-color: #eee
+          border-bottom: #eee
+          top: 1px
+          padding-bottom: 6px
+        a
+          text-decoration: none
+
+// Styles for sandbox plugin
+#sandbox
+  margin-top: 15px
+  #sandbox_input
+    display: block
+    +clearfix
+    #path_info
+      display: block
+      clear: right
+      cursor: pointer
+      #get
+        border: none
+        float: left
+        line-height: 26px
+        background-color: black
+        color: #FFFFFF
+        font-weight: 300
+        font-family: "Franklin Gothic Demi Condensed",Helvetica,Arial,Sans-Serif
+        font-size: 13px
+        padding: 0px 13px 0 12px
+        text-decoration: none
+        text-transform: uppercase
+        margin-bottom: 5px
+      #path
+        float: left
+        clear: right
+        font-family: "Franklin Gothic Book",Helvetica,Arial,Sans-Serif
+        font-size: 14px
+        padding: 3px
+        padding-bottom: 2px
+        outline: none
+        padding-left: 5px
+        margin-left: 0px
+        background-color: #eee
+        margin-bottom: 5px
+        border: 1px solid black
+        width: 800px
+        height: 19px
+    #fields
+      display: none
+      clear: both
+      label
+        margin-left: 10px
+        font-size: 9px
+        text-transform: uppercase
+      #sandbox_text_field
+        margin-left: 10px
+        width: 200px
+        height: 18px
+        background-color: transparent
+        border: 1px solid black
+        font-family: "Franklin Gothic Book",Helvetica,Arial,Sans-Serif
+        font-size: 14px
+        padding: 3px
+        outline: none
+        display: block
+      #sandbox_try_button
+        margin-left: 10px
+        margin-top: 5px
+        margin-bottom: 5px
+  #sandbox_response
+    display: none
+    border: 1px solid #ddd
+    padding: 20px
+    margin: 10px
+    background-color: #eee
+    font-family: 'Courier New','Terminal',monospace
+    font-size: 12px
+    white-space: pre-wrap
+    white-space: -moz-pre-wrap !important
+    white-space: -pre-wrap
+    white-space: -o-pre-wrap
+    word-wrap: break-word
+    overflow: auto
+    height: 500px
+
+// Autocomplete styles
+ul.ui-autocomplete.ui-menu
+  background: rgba(255, 255, 255, 0.9)
+  line-height: 1.4em
+  width: 195px
+  max-height: 300px
+  overflow: auto
+  border: 1px solid #CCC
+  border-top: 0px
+  li
+    list-style: none
+    cursor: pointer
+    .params
+      font-size: 0.8em
+      display: inline-block
+      color: #999
+      float: right
+      margin-right: 3px
+    a
+      display: block
+      padding: 3px
+    &:hover, .ui-state-hover
+      background: rgba(0, 0, 0, 0.05)
