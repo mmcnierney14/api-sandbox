@@ -1,15 +1,12 @@
-%script
-  new App.Views.APIExplorer({ el: $('#main_content') });
-
 #explorer
-  %h1= "Art.sy API #{@version} Explorer"
+  %h1= "API #{@version} Explorer"
 
   %h2
-    Art.sy Console
+    Console
   #explorer_input
     .method
       %ul.dropdown
-    .prefix= " http://art.sy/api/#{@version}/"
+    .prefix= " http://route.api/path/#{@version}/"
     %input#path_input.path_input
     %button.try_button#try_button View
 
