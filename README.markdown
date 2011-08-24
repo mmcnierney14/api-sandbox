@@ -6,15 +6,7 @@ API Sandbox is a jQuery plugin written in CoffeeScript that allows web apps to e
 Dependencies
 ------------
 
-apiSandbox's dependencies:
-
- * [jQuery](http://jquery.com/)
- * [jQuery BBQ](http://benalman.com/projects/jquery-bbq-plugin/)
- * [Underscore.js](http://documentcloud.github.com/underscore/)
- * [CoffeeScript](http://jashkenas.github.com/coffee-script/)
- * [SASS](http://sass-lang.com/)
- 
-APIExplorer's dependencies:
+API Explorer's dependencies:
 
  * [Grape](https://github.com/dblock/grape/tree/api-params) on [dblock](https://github.com/dblock)'s fork (at api-params) is the only supported API
  * [jQuery](http://jquery.com/)
@@ -24,6 +16,14 @@ APIExplorer's dependencies:
  * [CoffeeScript](http://jashkenas.github.com/coffee-script/)
  * [SASS](http://sass-lang.com/)
 
+API Sandbox's dependencies:
+
+ * [jQuery](http://jquery.com/)
+ * [jQuery BBQ](http://benalman.com/projects/jquery-bbq-plugin/)
+ * [Underscore.js](http://documentcloud.github.com/underscore/)
+ * [CoffeeScript](http://jashkenas.github.com/coffee-script/)
+ * [SASS](http://sass-lang.com/)
+ 
 I'd be happy to accept pull requests for versions of API Sandbox without these dependencies.
 
 Usage
@@ -32,6 +32,8 @@ Usage
 ###API Explorer
 
 The plugin takes one argument, which is a relative URL to a server path that returns a hash describing the API for a web app. API Explorer accepts a hash with two keys, one with a string for the current version of the API, e.g. `"v1"`, and one with an array of Grape `route` objects.
+
+    $.APIExplorer("describe_api")
 
 For example, a Rails controller could be configured as follows:
 
