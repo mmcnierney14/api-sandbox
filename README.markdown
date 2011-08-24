@@ -67,6 +67,8 @@ Important note: if the API path ends with a symbol, it must end with a trailing 
 
 If the path had been written as `/api/v1/:user/:action`, API Sandbox would not have recognized the second field.
 
+API Sandbox can be used to easily place interactive sandboxes inline with documentation. See [this blog post](http://mattmcnierney.wordpress.com/2011/08/18/embedding-api-sandboxes-in-documentation/) for information on how to integrate Markdown, Redcarpet 2.0.0, and API Sandbox together to create dynamic docs.
+
 Inspiration
 -----------
 
