@@ -74,3 +74,4 @@ TODO
 ----
 
 * Add support for the entry of multiple values for array params (e.g. `?names[]=`).
+* Add more configuration options to APIExplorer
