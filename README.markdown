@@ -71,5 +71,5 @@ The API Sandbox plugin was inspired by [Wordnik's excellent API explorer](http:/
 TODO
 ----
 
-* Add support for the entry of multiple values for array params (e.g. `?names[]=`).
+* Add support for the entry of multiple values for array params (e.g. `?names[]=`). Currently, API Sandbox correctly sends array params as arrays, but there isn't a clean interface to add multiple values to an array param all in the same box. If you need to enter multiple values, then just put multiple array params in the path, e.g. `api/v1/users?names[]=names[]=names[]=`.
 * Add more configuration options to APIExplorer
