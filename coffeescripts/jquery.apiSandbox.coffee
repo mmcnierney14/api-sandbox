@@ -1,7 +1,7 @@
 (($) ->
   $.fn.sandbox_for = (method,path) ->
     # Get symbol params and their respective indexes in the path
-    symbols = if match = path.match(new RegExp(/:.+?(?=\/)/g)) then match else []
+    symbols = if match = path.match(new RegExp(/:.+?(?=\/)|:.+?$/g)) then match else []
   
     # Get an array of params with jQuery bbq
     params = if path.indexOf("?") > -1 then $.deparam.querystring(path) else []

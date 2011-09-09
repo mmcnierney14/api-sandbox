@@ -61,12 +61,6 @@ API Sandbox recognizes URL parameters in three forms: `:symbols`, `?first_param=
 
 This would result in a form with four fields, one for `model`, one for `term`, one for `results_per_page`, and one for `page`.
 
-Important note: if the API path ends with a symbol, it must end with a trailing forward slash (/) to properly parse the path. For example:
-
-    $("#user").sandbox_for("post","/api/v1/:user/:action/")
-
-If the path had been written as `/api/v1/:user/:action`, API Sandbox would not have recognized the second field.
-
 API Sandbox can be used to easily place interactive sandboxes inline with documentation. See [this blog post](http://mattmcnierney.wordpress.com/2011/08/18/embedding-api-sandboxes-in-documentation/) for information on how to integrate Markdown, Redcarpet 2.0.0, and API Sandbox together to create dynamic docs.
 
 Inspiration
