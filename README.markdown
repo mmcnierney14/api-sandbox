@@ -28,7 +28,7 @@ Usage
 
 The plugin takes one argument, which is a relative URL to a server path that returns a hash describing the API for a web app. API Explorer accepts a hash with two keys, one with a string for the current version of the API, e.g. `"v1"`, and one with an array of  `route` objects. The second parameter is the default path to query on load.
 
-    $.APIExplorer("describe_api", "me")
+    $.APIExplorer("routes", "api/v1/ping")
 
 For example, [Grape](http://github.com/intridea/grape/tree/frontier) can expose a `routes` method.
 
