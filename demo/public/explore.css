@@ -1,0 +1,255 @@
+#explorer {
+  display: block;
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto; }
+  #explorer h1 {
+    margin-bottom: 30px; }
+  #explorer #explorer_input {
+    display: block;
+    *display: inline-block; }
+    #explorer #explorer_input:after {
+      content: " ";
+      display: block;
+      height: 0;
+      clear: both;
+      visibility: hidden; }
+    #explorer #explorer_input div, #explorer #explorer_input input {
+      float: left;
+      display: block; }
+    #explorer #explorer_input .prefix {
+      border: 1px solid black;
+      border-right: none;
+      border-left: none;
+      padding-left: 4px;
+      padding-bottom: 1px;
+      margin-right: -1px;
+      font-size: 14px;
+      line-height: 23px;
+      font-family: "Franklin Gothic Book", Helvetica, Arial, Sans-Serif;
+      color: #999999; }
+    #explorer #explorer_input input.path_input {
+      margin: 0px;
+      padding: 0px;
+      outline: none;
+      border: 1px solid black;
+      border-left: none;
+      padding-bottom: 1px;
+      margin-right: -1px;
+      font-size: 14px;
+      line-height: 23px;
+      font-family: "Franklin Gothic Book", Helvetica, Arial, Sans-Serif;
+      color: black; }
+    #explorer #explorer_input #try_button {
+      line-height: 21px;
+      text-align: center;
+      background-color: black;
+      color: white;
+      font-weight: 300;
+      font-family: "Franklin Gothic Demi Condensed", Helvetica, Arial, Sans-Serif;
+      font-size: 13px;
+      text-decoration: none;
+      text-transform: uppercase;
+      width: 75px;
+      display: inline-block;
+      margin-left: 5px;
+      margin-top: 0px;
+      padding: 0; }
+    #explorer #explorer_input .method ul {
+      padding: 0px;
+      margin: 0px; }
+      #explorer #explorer_input .method ul > li {
+        text-align: center;
+        line-height: 26px;
+        background-color: black;
+        color: white;
+        font-weight: 300;
+        font-family: "Franklin Gothic Demi Condensed", Helvetica, Arial, Sans-Serif;
+        font-size: 13px;
+        text-decoration: none;
+        text-transform: uppercase;
+        width: 75px;
+        display: inline-block;
+        padding: 0px;
+        margin: 0px; }
+        #explorer #explorer_input .method ul > li:hover {
+          background-color: #4c4c4c; }
+        #explorer #explorer_input .method ul > li p {
+          color: white;
+          text-decoration: none;
+          padding: 0px;
+          margin: 0px;
+          display: inline-block;
+          cursor: default; }
+      #explorer #explorer_input .method ul > li.expandable {
+        list-style-type: none;
+        cursor: pointer; }
+        #explorer #explorer_input .method ul > li.expandable p {
+          cursor: pointer; }
+        #explorer #explorer_input .method ul > li.expandable:after {
+          content: "  +"; }
+        #explorer #explorer_input .method ul > li.expandable:hover ul {
+          display: block; }
+          #explorer #explorer_input .method ul > li.expandable:hover ul li {
+            display: block; }
+        #explorer #explorer_input .method ul > li.expandable ul {
+          display: none;
+          z-index: 1000;
+          position: absolute; }
+          #explorer #explorer_input .method ul > li.expandable ul li:hover {
+            background-color: #4c4c4c; }
+          #explorer #explorer_input .method ul > li.expandable ul li p {
+            color: white; }
+  #explorer #explorer_output {
+    display: none; }
+    #explorer #explorer_output div {
+      height: 500px; }
+    #explorer #explorer_output #response {
+      display: block;
+      border: 1px solid #dddddd;
+      padding: 20px; }
+      #explorer #explorer_output #response.no-padding {
+        padding: 0px; }
+        #explorer #explorer_output #response.no-padding table {
+          margin: 0px; }
+      #explorer #explorer_output #response.loading {
+        background-image: url(images/loader.gif);
+        background-color: white;
+        background-position: center center;
+        background-repeat: no-repeat; }
+      #explorer #explorer_output #response.loaded {
+        background-color: #eeeeee;
+        font-family: "Courier New", "Terminal", monospace;
+        font-size: 12px;
+        white-space: pre-wrap;
+        white-space: -moz-pre-wrap !important;
+        white-space: -pre-wrap;
+        white-space: -o-pre-wrap;
+        word-wrap: break-word;
+        overflow: auto; }
+    #explorer #explorer_output #explorer_nav ul {
+      margin-bottom: 0px;
+      margin-left: 0px;
+      margin-top: 2.5em;
+      font-family: helvetica neue, Helvetica, Arial, Sans-Serif;
+      font-weight: 200;
+      font-size: 85%; }
+      #explorer #explorer_output #explorer_nav ul > li {
+        border: 1px solid #dddddd;
+        padding: 5px;
+        background-color: white;
+        color: #4c4c4c;
+        display: inline-block;
+        position: relative;
+        top: 1px; }
+        #explorer #explorer_output #explorer_nav ul > li.current_tab_item, #explorer #explorer_output #explorer_nav ul > li:hover {
+          background-color: #eeeeee;
+          border-bottom: #eeeeee;
+          top: 1px;
+          padding-bottom: 6px; }
+        #explorer #explorer_output #explorer_nav ul > li a {
+          text-decoration: none; }
+
+#sandbox {
+  margin-top: 15px; }
+  #sandbox #sandbox_input {
+    display: block;
+    *display: inline-block; }
+    #sandbox #sandbox_input:after {
+      content: " ";
+      display: block;
+      height: 0;
+      clear: both;
+      visibility: hidden; }
+    #sandbox #sandbox_input #path_info {
+      display: block;
+      clear: right;
+      cursor: pointer; }
+      #sandbox #sandbox_input #path_info #get {
+        border: none;
+        float: left;
+        line-height: 26px;
+        background-color: black;
+        color: white;
+        font-weight: 300;
+        font-family: "Franklin Gothic Demi Condensed", Helvetica, Arial, Sans-Serif;
+        font-size: 13px;
+        padding: 0px 13px 0 12px;
+        text-decoration: none;
+        text-transform: uppercase;
+        margin-bottom: 5px; }
+      #sandbox #sandbox_input #path_info #path {
+        float: left;
+        clear: right;
+        font-family: "Franklin Gothic Book", Helvetica, Arial, Sans-Serif;
+        font-size: 14px;
+        padding: 3px;
+        padding-bottom: 2px;
+        outline: none;
+        padding-left: 5px;
+        margin-left: 0px;
+        background-color: #eeeeee;
+        margin-bottom: 5px;
+        border: 1px solid black;
+        width: 800px;
+        height: 19px; }
+    #sandbox #sandbox_input #fields {
+      display: none;
+      clear: both; }
+      #sandbox #sandbox_input #fields label {
+        margin-left: 10px;
+        font-size: 9px;
+        text-transform: uppercase; }
+      #sandbox #sandbox_input #fields #sandbox_text_field {
+        margin-left: 10px;
+        width: 200px;
+        height: 18px;
+        background-color: transparent;
+        border: 1px solid black;
+        font-family: "Franklin Gothic Book", Helvetica, Arial, Sans-Serif;
+        font-size: 14px;
+        padding: 3px;
+        outline: none;
+        display: block; }
+      #sandbox #sandbox_input #fields #sandbox_try_button {
+        margin-left: 10px;
+        margin-top: 5px;
+        margin-bottom: 5px; }
+  #sandbox #sandbox_response {
+    display: none;
+    border: 1px solid #dddddd;
+    padding: 20px;
+    margin: 10px;
+    background-color: #eeeeee;
+    font-family: "Courier New", "Terminal", monospace;
+    font-size: 12px;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap !important;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+    overflow: auto;
+    height: 500px; }
+
+ul.ui-autocomplete.ui-menu {
+  background: rgba(255, 255, 255, 0.9);
+  line-height: 1.4em;
+  width: 195px;
+  max-height: 300px;
+  overflow: auto;
+  border: 1px solid #cccccc;
+  border-top: 0px; }
+  ul.ui-autocomplete.ui-menu li {
+    list-style: none;
+    cursor: pointer; }
+    ul.ui-autocomplete.ui-menu li .params {
+      font-size: 0.8em;
+      display: inline-block;
+      color: #999999;
+      float: right;
+      margin-right: 3px; }
+    ul.ui-autocomplete.ui-menu li a {
+      display: block;
+      padding: 3px; }
+    ul.ui-autocomplete.ui-menu li:hover, ul.ui-autocomplete.ui-menu li .ui-state-hover {
+      background: rgba(0, 0, 0, 0.05); }

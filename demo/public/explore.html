@@ -1,0 +1,45 @@
+<html>
+ <head>
+  <title>API Explorer</title>
+  <link href='explore.css' rel='stylesheet' type='text/css'>
+  <script src="/scripts/jquery-1.7.1.min.js"></script>
+  <script src="/scripts/jquery-ui.js"></script>
+  <script src="/scripts/jquery.ba-bbq.min.js"></script>
+  <script src="/scripts/prettyprint.js"></script>
+  <script src="/scripts/underscore-min.js"></script>
+  <script src="/scripts/jquery.apiExplorer.js"></script>
+  <script language="javascript">
+    $(document).ready(function() {
+      $.APIExplorer("api/routes", "/api/v1/ring");
+    })
+  </script>
+ </head>
+ <body>
+  <div id='explorer'>
+    <h2 class='title'>
+      API Explorer
+    </h2>
+    <div id='masthead'></div>
+    <div id='explorer_input'>
+    <div class='method'>
+      <ul class='dropdown'></ul>
+    </div>
+    <div class='prefix'>http://localhost:9292</div>
+      <input class='path_input' id='path_input'>
+      <button class='try_button' id='try_button'>View</button>
+    </div>
+      <div id='explorer_output'>
+        <nav id='explorer_nav'>
+        <ul>
+          <li class='tab formatted_tab'><a href="#">Formatted JSON</a></li>
+          <li class='tab table_tab'><a href="#">Table Format</a></li>
+          <li class='tab raw_tab'><a href="#">Raw JSON</a></li>
+        </ul>
+      </nav>
+      <div id='response'></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+

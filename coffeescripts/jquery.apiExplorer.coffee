@@ -1,13 +1,12 @@
 (($) ->
-  $.APIExplorer = (describe_api_path) ->
+  $.APIExplorer = (describe_api_path, initial_path = "/") ->
     # Wrap everything in an ajax call so that the code has access to the
     # API data from the server
-    $.get(describe_api_path, (api) ->
+    $.get(describe_api_path, (routes) ->
   
       # Describe the API
-      window.api_routes = api.routes
-      window.api_methods = _.uniq(_.map(api_routes, (r) -> r.options.method ))
-      window.api_version = api.version
+      window.api_routes = routes
+      window.api_methods = _.uniq(_.map(api_routes, (r) -> r.method ))
         
       highlightTab = (tab) ->
         $(".tab").each ->
@@ -20,7 +19,7 @@
         $("#response").removeClass("no-padding")
         $('#explorer_output').css("display","block")
         $.ajax
-          url: $.trim('/api/'+window.api_version+'/'+$(".path_input").val())
+          url: $.trim($(".path_input").val())
           type: window.method
           error: (jqXHR, textStatus, errorThrown) =>
             @formatted_data = false
@@ -62,7 +61,7 @@
           $(".method ul").html("<li id='#{api_methods[0]}'><p>#{api_methods[0]}</p></li>")
 
       # Initialize console
-      $("#path_input").val("me/collections")
+      $("#path_input").val(initial_path)
       getResponse()
       populateMethodDropdown("GET",api_methods) if api_methods
       window.method = "GET"
@@ -70,7 +69,7 @@
       # Get response when form is submitted
       $(".try_button").click ->
         getResponse()
-      $(".path_input").keypress (event) -> 
+      $(".path_input").keypress (event) ->
         if (event.which == 13)
           getResponse()
 
@@ -97,7 +96,7 @@
         source: (req, responseFn) ->
           # Select paths with similar path elements
           results = _.select(api_routes, (r) ->
-            path_elements = r.options.path.replace("/api/:version/","").replace("(.:format)","").split("/")
+            path_elements = r.path.replace("(.:format)","").split("/")
             term_elements = req.term.split(/[\/?&]/)
         
             match = false
@@ -107,13 +106,12 @@
                 match = true if path_el.match(new RegExp("^"+el,"g"))
                 break if match
         
-            match && r.options.method == window.method
+            match && r.method == window.method
           )
           # Wrap them in a clean object
           results = _.map(results, (r) ->
-            path: r.options.path.replace("/api/:version/","").replace("(.:format)","")
-            params: r.options.params
-            optional_params: r.options.optional_params
+            path: r.path.replace("(.:format)","")
+            params: r.params
           )
           # Sort them by their similarity (from the beginning of the string) to the search term
           results = _.sortBy(results, (r) ->
@@ -132,7 +130,7 @@
           html = "
               <a>
               <span class='path'>#{item.path}</span>"
-          html += "<span id='optional' class='params'>optional: #{item.optional_params.join(', ')}</span>" if item.optional_params
+          html += "<span id='params' class='params'>params: #{item.params.join(', ')}</span>" if item.optional_params
           html += "<span id='required' class='params'>params: #{item.params.join(', ')}</span>" unless item.params.join("") == ""
           html += "</a>"
           item = $('<li>').data("item.autocomplete", item).append(html).appendTo(ul)

@@ -1,3 +1,12 @@
+=clearfix
+  *display: inline-block
+  &:after
+    content: " "
+    display: block
+    height: 0
+    clear: both
+    visibility: hidden
+    
 // Styles for the API explorer
 #explorer
   display: block
@@ -14,21 +23,6 @@
     & div, & input
       float: left
       display: block
-    input.path_input
-      width: 634px
-      height: 18px
-      background-color: transparent
-      border: 1px solid black
-      border-left: none
-      font-family: "Franklin Gothic Book",Helvetica,Arial,Sans-Serif
-      font-size: 14px
-      padding: 3px
-      padding-top: 2px
-      padding-bottom: 4px
-      outline: none
-      padding-left: 0px
-      margin-left: 0px
-      margin-right: 2px   
     .prefix
       border: 1px solid black
       border-right: none
@@ -40,6 +34,33 @@
       line-height: 23px
       font-family: "Franklin Gothic Book",Helvetica,Arial,Sans-Serif
       color: #999
+    input.path_input
+      margin: 0px
+      padding: 0px
+      outline: none
+      border: 1px solid black
+      border-left: none
+      padding-bottom: 1px
+      margin-right: -1px
+      font-size: 14px
+      line-height: 23px
+      font-family: "Franklin Gothic Book",Helvetica,Arial,Sans-Serif
+      color: black
+    #try_button
+      line-height: 21px
+      text-align: center
+      background-color: black
+      color: #FFFFFF
+      font-weight: 300
+      font-family: "Franklin Gothic Demi Condensed",Helvetica,Arial,Sans-Serif
+      font-size: 13px
+      text-decoration: none
+      text-transform: uppercase
+      width: 75px
+      display: inline-block
+      margin-left: 5px
+      margin-top: 0px
+      padding: 0
     .method ul
       padding: 0px
       margin: 0px
@@ -53,7 +74,7 @@
         font-size: 13px
         text-decoration: none
         text-transform: uppercase
-        width: 50px
+        width: 75px
         display: inline-block
         padding: 0px
         margin: 0px
