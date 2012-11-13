@@ -8,13 +8,10 @@ Dependencies
 
 API Explorer's dependencies:
 
- * [Grape](https://github.com/dblock/grape/tree/api-params)
  * [jQuery](http://jquery.com/)
  * [jQuery UI](http://jqueryui.com/download) (just the autocomplete plugin)
  * [Underscore.js](http://documentcloud.github.com/underscore/)
- * [prettyPrint.js](https://github.com/jamespadolsey/prettyPrint.js)
- * [CoffeeScript](http://jashkenas.github.com/coffee-script/)
- * [SASS](http://sass-lang.com/)
+ * [prettyPrint.js](https://github.com/padolsey/prettyPrint.js)
 
 API Sandbox's dependencies:
 
@@ -23,29 +20,41 @@ API Sandbox's dependencies:
  * [Underscore.js](http://documentcloud.github.com/underscore/)
  * [CoffeeScript](http://jashkenas.github.com/coffee-script/)
  * [SASS](http://sass-lang.com/)
- 
-I'd be happy to accept pull requests for versions of API Sandbox without these dependencies.
 
 Usage
 -----
 
 ###API Explorer
 
-The plugin takes one argument, which is a relative URL to a server path that returns a hash describing the API for a web app. API Explorer accepts a hash with two keys, one with a string for the current version of the API, e.g. `"v1"`, and one with an array of Grape `route` objects.
+The plugin takes one argument, which is a relative URL to a server path that returns a hash describing the API for a web app. API Explorer accepts a hash with two keys, one with a string for the current version of the API, e.g. `"v1"`, and one with an array of  `route` objects. The second parameter is the default path to query on load.
 
-    $.APIExplorer("describe_api")
+    $.APIExplorer("routes", "api/v1/ping")
 
-For example, a Rails controller could be configured as follows:
+For example, [Grape](http://github.com/intridea/grape/tree/frontier) can expose a `routes` method.
 
-    # GET /api/:version/describe_api
-    def describe_api
-      api_hash = {}
-      api_hash['version'] = params[:version]
-      api_hash['routes'] = Api::routes
-      render json: api_hash
+``` ruby
+module Acme
+  class API < Grape::API
+    prefix 'api'
+    mount ::Acme::API_v1
+    get "routes" do
+      {
+        "v1" => ::Acme::API_v1::routes.map do |route|
+          {
+            :description => route.route_description,
+            :version => route.route_version,
+            :method => route.route_method,
+            :path => route.route_path,
+            :params => route.route_params
+          }
+        end
+      }
     end
-    
-API Explorer adds functionality to a template, which has been provided. As long as the skeleton of the template remains with the proper `div` elements still intact, you can modify this template and the accompanying CSS as much as you like.
+  end
+end
+```
+  
+API Explorer adds functionality to a template, which has been provided in HAML format. As long as the skeleton of the template remains with the proper `div` elements still intact, you can modify this template and the accompanying CSS as much as you like.
 
 ###API Sandbox
 
@@ -66,7 +75,13 @@ API Sandbox can be used to easily place interactive sandboxes inline with docume
 Inspiration
 -----------
 
-The API Sandbox plugin was inspired by [Wordnik's excellent API explorer](http://developer.wordnik.com/docs). To easily create an API for your Ruby on Rails web app, use [Grape](https://github.com/intridea/grape). This plugin was tested on an API using Grape.
+The API Sandbox plugin was inspired by [Wordnik's excellent API explorer](http://developer.wordnik.com/docs). To easily create an API for your Ruby on Rails web app, use [Grape](https://github.com/intridea/grape).
+
+Development
+-----------
+
+ * [CoffeeScript](http://jashkenas.github.com/coffee-script/)
+ * [SASS](http://sass-lang.com/)
 
 TODO
 ----

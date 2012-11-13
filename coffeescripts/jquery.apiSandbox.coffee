@@ -6,7 +6,7 @@
     # Get an array of params with jQuery bbq
     params = if path.indexOf("?") > -1 then $.deparam.querystring(path) else []
         
-    # Get readable field names 
+    # Get readable field names
     for name,value of params
       if _.isArray(value)
         params[name + "[]"] = params[name]
@@ -26,6 +26,7 @@
     for name in symbol_names
       form += "
         <label>" + name + "<input id='sandbox_text_field' type='text' name='" + name + "'></label>"
+    form += "</form><form id='params'>"
     for name in param_names
       form += "
         <label>" + name + "<input id='sandbox_text_field' type='text' name='" + name + "'></label>"
@@ -56,7 +57,7 @@
       call_path = $.param.querystring( call_path.split("?")[0], context.find("#params").serializeToJSON())
 
       # Get the API response
-      $.ajax 
+      $.ajax
         url: call_path,
         type: method,
         error: (jqXHR, textStatus, errorThrown) =>
